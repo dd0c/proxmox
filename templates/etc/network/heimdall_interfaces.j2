@@ -1,3 +1,5 @@
+### Ansible templated
+
 source /etc/network/interfaces.d/*
 
 auto lo
@@ -17,4 +19,4 @@ iface enp9s0 inet6 static
   netmask 64
   gateway fe80::1
 
-
+{{ virtnet_interfaces }}

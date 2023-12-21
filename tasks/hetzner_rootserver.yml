@@ -1,11 +1,12 @@
 ---
 
-- name: 'W: Possible missing firmware /lib/firmware/rtl_nic/... for module r8169)'
+- name: Install of packages solves error 'Possible missing firmware...' for B450 Pro4 R2.0
   ansible.builtin.apt:
     pkg:
     - firmware-misc-nonfree
     - firmware-realtek
-  update_cache: yes
+    update_cache: yes
+  when: ansible_facts['board_name'] == "B450 Pro4 R2.0"
 
 - name: Add virtual bridge with NAT
   ansible.builtin.template:
