@@ -1,0 +1,13 @@
+---
+
+- name: Install ufw
+  ansible.builtin.apt:
+    pkg:
+    - ufw
+
+- name: Allow everything and enable UFW
+  community.general.ufw:
+    state: enabled
+    policy: allow
+
+...
