@@ -1,0 +1,6 @@
+---
+
+- name: Reboot rootserver
+  ansible.builtin.reboot:
+
+...
