@@ -4,4 +4,9 @@
   ansible.builtin.include_tasks:
     file: rootserver_setup.yml
 
+- name: Include Proxmox installation task for bookwork
+  ansible.builtin.include_tasks:
+    file: bookworm_proxmox_install.yml
+  when: ansible_facts['distribution_release'] == "bookworm"
+
 ...

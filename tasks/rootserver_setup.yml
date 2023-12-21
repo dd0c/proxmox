@@ -6,7 +6,7 @@
     - firmware-misc-nonfree
     - firmware-realtek
     update_cache: yes
-  when: ansible_facts['board_name'] == "B450 Pro4 R2.0"
+  when: ansible_facts['board_name'] == "B450 Pro4 R2.0" and ansible_facts['distribution_release'] == "bookworm"
 
 - name: Add virtual bridge with NAT
   ansible.builtin.template:

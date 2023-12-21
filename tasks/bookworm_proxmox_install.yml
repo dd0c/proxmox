@@ -1,0 +1,41 @@
+---
+
+- name: Add Proxmox apt source file for bookwork
+  ansible.builtin.template:
+    src: templates/etc/apt/sources.list.d/bookworm_pve-install-repo.list.j2
+    dest: /etc/apt/sources.list.d/pve-install-repo.list
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Rawly install Proxmox gpg key for bookworm
+  ansible.builtin.raw: wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+
+- name: Update and Upgrade
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: Install Proxmox
+  ansible.builtin.apt:
+    pkg:
+    - proxmox-ve
+    - postfix
+    - open-iscsi
+
+- name: Remove not needed packages
+  ansible.builtin.apt:
+    pkg:
+    - linux-image-amd64
+    - 'linux-image-6.1*'
+    - os-prober
+    state: absent
+    purge: true
+
+- name: Rawly update grub
+  ansible.builtin.raw: update-grub
+  notify:
+    - Reboot rootserver
+
+...
