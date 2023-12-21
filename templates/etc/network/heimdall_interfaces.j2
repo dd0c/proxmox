@@ -1,0 +1,20 @@
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+iface lo inet6 loopback
+
+auto enp9s0
+iface enp9s0 inet static
+  address 65.21.233.68
+  netmask 255.255.255.192
+  gateway 65.21.233.65
+  # route 65.21.233.64/26 via 65.21.233.65
+  up route add -net 65.21.233.64 netmask 255.255.255.192 gw 65.21.233.65 dev enp9s0
+
+iface enp9s0 inet6 static
+  address 2a01:4f9:6a:202c::2
+  netmask 64
+  gateway fe80::1
+
+

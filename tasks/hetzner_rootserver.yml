@@ -1,0 +1,18 @@
+---
+
+- name: 'W: Possible missing firmware /lib/firmware/rtl_nic/... for module r8169)'
+  ansible.builtin.apt:
+    pkg:
+    - firmware-misc-nonfree
+    - firmware-realtek
+  update_cache: yes
+
+- name: Add virtual bridge with NAT
+  ansible.builtin.template:
+    src: templates/etc/network/{{ inventory_hostname }}_interfaces.j2
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: '0644'
+
+...

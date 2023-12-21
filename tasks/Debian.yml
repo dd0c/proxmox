@@ -1,0 +1,7 @@
+---
+
+- name: Include Hetzner rootserver setup task
+  ansible.builtin.include_tasks:
+    file: hetzner_rootserver.yml
+
+...
