@@ -24,6 +24,11 @@
     - postfix
     - open-iscsi
 
+- name: Remove file from apt sources
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/pve-enterprise.list
+    state: absent
+
 - name: Remove not needed packages
   ansible.builtin.apt:
     pkg:
