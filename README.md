@@ -1,4 +1,4 @@
-# dd0c.proxmox_install
+# dd0c.proxmoxinstall
 Role for installing Proxmox.
 
 ROOTSERVER:
