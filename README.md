@@ -1,23 +1,26 @@
-# dd0c.proxmoxinstall
+# dd0c.pmx_install
 Role for installing Proxmox.
 
 ROOTSERVER:
 
-Hardware data:
-  CPU1: AMD Ryzen 5 3600 6-Core Processor (Cores 12)
-  Memory: 64250 MB
-  Disk /dev/nvme0n1: 512 GB (=> 476 GiB) Disk /dev/nvme1n1: 512 GB (=> 476 GiB) Total capacity 953 GiB with 2 Disks
-  Network data: eth0 LINK: yes
-  MAC: a8:a1:59:8c:bf:ab
-  IP: 65.21.233.68 IPv6: 2a01:4f9:6a:202c::2/64 RealTek RTL-8169 Gigabit Ethernet driver
+#Hardware data:
+#  CPU1: AMD Ryzen 5 3600 6-Core Processor (Cores 12)
+#  Memory: 64250 MB
+#  Disk /dev/nvme0n1: 512 GB (=> 476 GiB) Disk /dev/nvme1n1: 512 GB (=> 476 GiB) Total capacity 953 GiB with 2 Disks
+#  Network data: eth0 LINK: yes
+#  MAC: a8:a1:59:8c:bf:ab
+#  IP: 65.21.233.68 IPv6: 2a01:4f9:6a:202c::2/64 RealTek RTL-8169 Gigabit Ethernet driver
 
 Disk partitioning:
-  / 3G
-  /usr 6G
-  /boot 768M
-  /tmp 2G
+  / 10G
+  /boot 1G
+  /home 10G
+
+
+  /tmp 4G
+  /usr 10G
   /var all
-  /var/log 3G
+  /var/log 100G
   swap 4G
 
 Errors after install Debian 12:
