@@ -32,9 +32,8 @@
 - name: Remove not needed packages
   ansible.builtin.apt:
     pkg:
-    - linux-image-amd64
     - 'linux-image-6.1*'
-    - os-prober
+    - 'os-prober'
     state: absent
     purge: true
 
