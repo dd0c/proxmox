@@ -1,8 +1,8 @@
 ---
 
-#- name: Include NAT setup task
-#  ansible.builtin.include_tasks:
-#    file: vmbr0_setup.yml
+- name: Include NAT setup task
+  ansible.builtin.include_tasks:
+    file: vmbr0_setup.yml
 
 - name: Include Proxmox installation task for bookworm
   ansible.builtin.include_tasks:
