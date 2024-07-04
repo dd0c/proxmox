@@ -2,7 +2,7 @@
 
 auto vmbr0
   iface vmbr0 inet static
-  address {{ virtnet_addr }}.1
+  address {{ virtnet_addr }}.254
   netmask 255.255.255.0
   bridge_ports none
   bridge_stp off
