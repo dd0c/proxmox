@@ -1,4 +1,4 @@
-### dd0c.pmx_install
+### proxmox
 Role for installing Proxmox cluster.
 
 ### Debian Bookworm
