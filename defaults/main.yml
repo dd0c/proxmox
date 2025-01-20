@@ -1,5 +1,6 @@
 ---
 
 virtnet1_addr: '192.168.69'
+virtnet2_addr: '192.168.169'
 
 ...

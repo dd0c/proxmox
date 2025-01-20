@@ -1,0 +1,13 @@
+---
+
+- name: Add virtual bridge with NAT
+  ansible.builtin.template:
+    src: templates/etc/network/interfaces.d/vmbr1.j2
+    dest: /etc/network/interfaces.d/vmbr1
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Reboot rootserver
+
+...
