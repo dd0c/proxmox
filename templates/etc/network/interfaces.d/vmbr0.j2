@@ -2,11 +2,11 @@
 
 auto vmbr0
   iface vmbr0 inet static
-  address {{ virtnet1_addr }}.254
+  address {{ virtnet0_addr }}.254
   netmask 255.255.255.0
   bridge_ports none
   bridge_stp off
   bridge_fd 0
   post-up echo 1 > /proc/sys/net/ipv4/ip_forward
-  post-up iptables -t nat -A POSTROUTING -s '{{ virtnet1_addr }}.0/24' -o {{ ansible_default_ipv4.interface }} -j MASQUERADE
-  post-down iptables -t nat -D POSTROUTING -s '{{ virtnet1_addr }}.0/24' -o {{ ansible_default_ipv4.interface }} -j MASQUERADE
+  post-up iptables -t nat -A POSTROUTING -s '{{ virtnet0_addr }}.0/24' -o {{ ansible_default_ipv4.interface }} -j MASQUERADE
+  post-down iptables -t nat -D POSTROUTING -s '{{ virtnet0_addr }}.0/24' -o {{ ansible_default_ipv4.interface }} -j MASQUERADE

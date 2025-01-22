@@ -13,9 +13,4 @@
     file: bookworm_proxmox_install.yml
   when: ansible_facts['distribution_release'] == "bookworm"
 
-#- name: Include UFW installation task for bookworm
-#  ansible.builtin.include_tasks:
-#    file: bookworm_ufw.yml
-#  when: ansible_facts['distribution_release'] == "bookworm"
-
 ...
