@@ -28,29 +28,34 @@
   ansible.builtin.wait_for_connection:
     delay: 60
 
-#- name: Install Proxmox
-#  ansible.builtin.apt:
-#    pkg:
-#    - proxmox-ve
-#    - postfix
-#    - open-iscsi
+- name: Install Proxmox
+  ansible.builtin.apt:
+    pkg:
+    - proxmox-ve
+    - postfix
+    - open-iscsi
+    - chrony
 
-#- name: Remove file from apt sources
-#  ansible.builtin.file:
-#    path: /etc/apt/sources.list.d/pve-enterprise.list
-#    state: absent
+- name: Remove file from apt sources
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/pve-enterprise.sources
+    state: absent
 
-#- name: Remove not needed packages
-#  ansible.builtin.apt:
-#    pkg:
-#    - 'linux-image-6.1*'
-#    - 'os-prober'
-#    state: absent
-#    purge: true
+- name: Remove not needed packages
+  ansible.builtin.apt:
+    pkg:
+    - 'linux-image-6.1*'
+    - 'os-prober'
+    state: absent
+    purge: true
 
-#- name: Rawly update grub
-#  ansible.builtin.raw: update-grub
-#  notify:
-#    - Reboot rootserver
+- name: Rawly update grub
+  ansible.builtin.raw: update-grub
+  notify:
+    - Reboot rootserver
+
+- name: Wait for machine to reboot
+  ansible.builtin.wait_for_connection:
+    delay: 60
 
 ...
