@@ -10,4 +10,8 @@
   notify:
     - Reboot rootserver
 
+- name: Wait for machine to reboot
+  ansible.builtin.wait_for_connection:
+    delay: 60
+
 ...

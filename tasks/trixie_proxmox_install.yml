@@ -1,0 +1,56 @@
+---
+
+- name: Add Proxmox apt source file for trixie
+  ansible.builtin.template:
+    src: templates/etc/apt/sources.list.d/trixie.pve-install-repo.sources.j2
+    dest: /etc/apt/sources.list.d/pve-install-repo.sources
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Rawly install Proxmox gpg key for trixie
+  ansible.builtin.raw: wget https://enterprise.proxmox.com/debian/proxmox-archive-keyring-trixie.gpg -O /usr/share/keyrings/proxmox-archive-keyring.gpg
+
+- name: Update and Upgrade OS
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: Install Proxmox default kernel
+  ansible.builtin.apt:
+    pkg:
+    - proxmox-default-kernel
+  notify:
+    - Reboot rootserver
+
+- name: Wait for machine to reboot
+  ansible.builtin.wait_for_connection:
+    delay: 60
+
+#- name: Install Proxmox
+#  ansible.builtin.apt:
+#    pkg:
+#    - proxmox-ve
+#    - postfix
+#    - open-iscsi
+
+#- name: Remove file from apt sources
+#  ansible.builtin.file:
+#    path: /etc/apt/sources.list.d/pve-enterprise.list
+#    state: absent
+
+#- name: Remove not needed packages
+#  ansible.builtin.apt:
+#    pkg:
+#    - 'linux-image-6.1*'
+#    - 'os-prober'
+#    state: absent
+#    purge: true
+
+#- name: Rawly update grub
+#  ansible.builtin.raw: update-grub
+#  notify:
+#    - Reboot rootserver
+
+...
